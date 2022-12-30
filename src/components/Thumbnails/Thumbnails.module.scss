@@ -1,0 +1,62 @@
+@import "../../styles/variables";
+
+$containerGap: 8px;
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+.item {
+  width: calc(25% - $containerGap);
+  //width: 240px;
+  //height: 100px;
+  cursor: pointer;
+  position: relative;
+
+  &:hover {
+    z-index: 1;
+    animation: zoom-in .1s forwards;
+  }
+
+  &--selected {
+    outline: 3px solid $fallGreen;
+    outline-offset: -3px;
+  }
+}
+
+@include animation-zoom-in-keyframes();
+
+.badge {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  border-radius: 50%;
+  border: 2px solid $fallGreen;
+  background-color: $swampGreen;
+
+}
+
+.check {
+  display: inline-block;
+  transform: rotate(45deg);
+  border-bottom: 2px solid $white;
+  border-right: 2px solid $white;
+  width: 6px;
+  height: 12px;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
