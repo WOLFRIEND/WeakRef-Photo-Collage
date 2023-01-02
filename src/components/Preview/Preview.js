@@ -2,7 +2,7 @@ import styles from "./Preview.module.scss";
 import clsx from "clsx";
 import { useAppContext } from "../../App.context";
 import { loadImage, weakCache, createImageFile } from "../../utils";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { LAYOUTS } from "../../constants";
 
 export const Preview = () => {
@@ -154,7 +154,12 @@ export const Preview = () => {
         </button>
       </div>
 
-      <div className={styles.previewContainer}>
+      <div
+        className={clsx(
+          styles.previewContainer,
+          loading && styles["previewContainer--disabled"]
+        )}
+      >
         {loading && <div className={styles.spinner}></div>}
         <canvas
           ref={canvas}
