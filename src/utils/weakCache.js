@@ -14,7 +14,7 @@ export const weakCache = async (f) => {
       const cached = ref.deref();
       if (cached !== undefined) {
         console.log(
-          `%cCACHED_IMAGE: Size: ${cached.size}, Type: ${cached.type}`,
+          `%cCACHED_IMAGE: Url: ${key}, Size: ${cached.size}, Type: ${cached.type}`,
           CONSOLE_SUCCESS
         );
         return cached;
@@ -23,7 +23,7 @@ export const weakCache = async (f) => {
 
     const fresh = await f(key);
     console.log(
-      `%cFETCHED_IMAGE: Size: ${fresh.size}, Type: ${fresh.type}`,
+      `%cFETCHED_IMAGE: Url: ${key}, Size: ${fresh.size}, Type: ${fresh.type}`,
       CONSOLE_PRIMARY
     );
     cache.set(key, new WeakRef(fresh));
