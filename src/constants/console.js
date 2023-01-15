@@ -1,23 +1,21 @@
 export const CONSOLE_BASE_STYLES = [
-  "font-size: 16px",
-  "padding: 8px",
-  "border: 3px solid black",
+  "font-size: 12px",
+  "padding: 4px",
+  "border: 2px solid #5a5a5a",
+  "color: white",
 ].join(";");
 
 export const CONSOLE_PRIMARY = [
   CONSOLE_BASE_STYLES,
-  "background-color: #205295",
-  "color: black",
+  "background-color: #13315a",
 ].join(";");
 
 export const CONSOLE_SUCCESS = [
   CONSOLE_BASE_STYLES,
-  "background-color: #9ED5C5",
-  "color: black",
+  "background-color: #385a4e",
 ].join(";");
 
 export const CONSOLE_ERROR = [
   CONSOLE_BASE_STYLES,
-  "background-color: #EB455F",
-  "color: black",
+  "background-color: #5a1a24",
 ].join(";");
