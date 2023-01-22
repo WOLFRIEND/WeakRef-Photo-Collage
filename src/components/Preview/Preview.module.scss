@@ -87,6 +87,20 @@
   }
 }
 
+.spinnerContainer {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.spinnerText {
+  margin: 0;
+  color: $mineralGreen;
+}
+
 .spinner {
   display: inline-block;
   width: 50px;

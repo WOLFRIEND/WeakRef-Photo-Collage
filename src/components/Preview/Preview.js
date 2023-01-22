@@ -2,11 +2,12 @@ import styles from "./Preview.module.scss";
 import clsx from "clsx";
 import { useAppContext } from "../../App.context";
 import { loadImage, weakCache, createImageFile } from "../../utils";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { LAYOUTS } from "../../constants";
 
 export const Preview = () => {
   const [loading, setLoading] = useState(false);
+  const [drawing, setDrawing] = useState(true);
   const [collageRendered, setCollageRendered] = useState(false);
 
   const {
@@ -40,10 +41,14 @@ export const Preview = () => {
       URL.revokeObjectURL(url);
     }
 
+    setLoading(false);
+
     drawCollage(images);
   };
 
   const drawCollage = (images) => {
+    setDrawing(true);
+
     let context = canvas.current.getContext("2d");
 
     /**
@@ -85,7 +90,7 @@ export const Preview = () => {
       currentCanvasDx += currentLayout.itemWidth;
     }
 
-    setLoading(false);
+    setDrawing(false);
     setCollageRendered(true);
   };
 
@@ -116,6 +121,11 @@ export const Preview = () => {
     link.click();
     link.remove();
   };
+
+  const getSpinnerLabel = useMemo(() => {
+    if (loading) return "Loading...";
+    if (drawing) return "Creating collage...";
+  }, [loading, drawing]);
 
   return (
     <>
@@ -160,7 +170,12 @@ export const Preview = () => {
           loading && styles["previewContainer--disabled"]
         )}
       >
-        {loading && <div className={styles.spinner}></div>}
+        {loading && (
+          <div className={styles.spinnerContainer}>
+            <div className={styles.spinner}></div>
+            <p className={styles.spinnerText}>{getSpinnerLabel}</p>
+          </div>
+        )}
         <canvas
           ref={canvas}
           className={clsx(styles.canvas, !loading && styles["canvas--ready"])}
